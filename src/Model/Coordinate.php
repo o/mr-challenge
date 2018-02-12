@@ -49,19 +49,34 @@ final class Coordinate
         return new Coordinate($this->x + $orientation->getStepSizeX(), $this->y + $orientation->getStepSizeY());
     }
 
-    public function hasWithinBounds(Coordinate $coordinate): boolean
+    public function hasWithinBounds(Coordinate $coordinate): bool
     {
         return $this->isXCoordinateWithinBounds($coordinate->getX()) && $this->isYCoordinateWithinBounds($coordinate->getY());
     }
 
-    private function isYCoordinateWithinBounds(int $yCoordinate): boolean
+    public function hasOutsideBounds(Coordinate $coordinate): bool
+    {
+        return $this->isXCoordinateInOutsideBounds($coordinate->getX()) && $this->isYCoordinateInOutsideBounds($coordinate->getY());
+    }
+
+    private function isYCoordinateWithinBounds(int $yCoordinate): bool
     {
         return $yCoordinate <= $this->y;
     }
 
-    private function isXCoordinateWithinBounds(int $xCoordinate): boolean
+    private function isXCoordinateWithinBounds(int $xCoordinate): bool
     {
         return $xCoordinate <= $this->x;
+    }
+
+    private function isYCoordinateInOutsideBounds(int $yCoordinate): bool
+    {
+        return $yCoordinate >= $this->y;
+    }
+
+    private function isXCoordinateInOutsideBounds(int $xCoordinate): bool
+    {
+        return $xCoordinate >= $this->x;
     }
 
 }

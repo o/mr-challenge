@@ -28,9 +28,9 @@ final class Rover
 
     /**
      * Rover constructor.
-     * @param Coordinate  $coordinate
+     * @param Coordinate $coordinate
      * @param Orientation $orientation
-     * @param Plateau     $plateau
+     * @param Plateau $plateau
      */
     public function __construct(Coordinate $coordinate, Orientation $orientation, Plateau $plateau)
     {
@@ -60,13 +60,27 @@ final class Rover
         $this->orientation = $this->orientation->turnRight();
     }
 
+    /**
+     * @throws \OutOfBoundsException
+     */
     public function move(): void
     {
-        $this->coordinate = $this->coordinate->newCoordinateForOrientation($this->orientation);
+        $newCoordinate = $this->coordinate->newCoordinateForOrientation($this->orientation);
+        if (!$this->plateau->hasWithinBounds($newCoordinate)) {
+            throw new \OutOfBoundsException('New coordinate is outside of plateau');
+        }
+
+        $this->coordinate = $newCoordinate;
     }
 
-    public function getCurrentPosition() {
-        return sprintf('%d %d %s', $this->coordinate->getX(), $this->coordinate->getY(), $this->orientation->getShortName());
+    public function getCurrentPosition(): string
+    {
+        return sprintf(
+            '%d %d %s',
+            $this->coordinate->getX(),
+            $this->coordinate->getY(),
+            $this->orientation->getShortName()
+        );
     }
 
 }

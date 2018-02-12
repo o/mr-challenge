@@ -26,4 +26,11 @@ final class Plateau
         $this->bottomLeftCoordinate = new Coordinate(0, 0);
     }
 
+    public function hasWithinBounds(Coordinate $coordinate): bool
+    {
+        return $this->bottomLeftCoordinate->hasOutsideBounds($coordinate) && $this->topRightCoordinate->hasWithinBounds(
+                $coordinate
+            );
+    }
+
 }
