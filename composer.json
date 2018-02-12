@@ -1,0 +1,21 @@
+{
+    "name": "osman/mars-rover-challenge",
+    "description": "Mars rover challenge",
+    "type": "project",
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Osman Ungur",
+            "email": "osmanungur@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Osman\\MarsRoverChallenge\\": ""
+        }
+    }
+}
