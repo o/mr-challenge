@@ -44,16 +44,32 @@ final class Coordinate
         return $this->y;
     }
 
+    /**
+     * Returns new coordination for orientation
+     *
+     * @param Orientation $orientation
+     * @return Coordinate
+     */
     public function newCoordinateForOrientation(Orientation $orientation): Coordinate
     {
         return new Coordinate($this->x + $orientation->getStepSizeX(), $this->y + $orientation->getStepSizeY());
     }
 
+    /**
+     * Checks coordinate in bounds
+     * @param Coordinate $coordinate
+     * @return bool
+     */
     public function hasWithinBounds(Coordinate $coordinate): bool
     {
         return $this->isXCoordinateWithinBounds($coordinate->getX()) && $this->isYCoordinateWithinBounds($coordinate->getY());
     }
 
+    /**
+     * Checks coordinate has outside of bounds
+     * @param Coordinate $coordinate
+     * @return bool
+     */
     public function hasOutsideBounds(Coordinate $coordinate): bool
     {
         return $this->isXCoordinateInOutsideBounds($coordinate->getX()) && $this->isYCoordinateInOutsideBounds($coordinate->getY());

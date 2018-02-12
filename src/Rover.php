@@ -39,6 +39,12 @@ final class Rover
         $this->plateau = $plateau;
     }
 
+    /**
+     * Runs rover based on string command
+     * @param $commands
+     * @throws \OutOfBoundsException
+     * @throws \UnexpectedValueException
+     */
     public function run($commands)
     {
         $commandParser = new CommandParser();
@@ -50,17 +56,24 @@ final class Rover
         }
     }
 
+    /**
+     * Changes orientation
+     */
     public function turnLeft(): void
     {
         $this->orientation = $this->orientation->turnLeft();
     }
 
+    /**
+     * Changes orientation
+     */
     public function turnRight(): void
     {
         $this->orientation = $this->orientation->turnRight();
     }
 
     /**
+     * Moves rover
      * @throws \OutOfBoundsException
      */
     public function move(): void
@@ -73,6 +86,10 @@ final class Rover
         $this->coordinate = $newCoordinate;
     }
 
+    /**
+     * Returns current position
+     * @return string
+     */
     public function getCurrentPosition(): string
     {
         return sprintf(
